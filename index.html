@@ -237,3 +237,65 @@
     </div>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toggle Play/Pause Video</title>
+  <style>
+    /* Hide the video */
+    .hidden-video {
+      position: absolute;
+      width: 0;
+      height: 0;
+      overflow: hidden;
+    }
+
+    /* Style the play button */
+    .play-button {
+      padding: 5px 10px; /* Smaller padding */
+      background-color: red; /* Red color */
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 12px; /* Smaller font size */
+      cursor: pointer;
+      position: fixed; /* Fix the button at the top corner */
+      top: 10px; /* Distance from the top of the page */
+      left: 10px; /* Distance from the left of the page */
+      z-index: 1000; /* Ensure the button stays on top of other elements */
+    }
+
+    .play-button:hover {
+      background-color: darkred; /* Darker red when hovered */
+    }
+  </style>
+</head>
+<body>
+  <!-- Play button -->
+  <button class="play-button" onclick="toggleVideo()">Play</button>
+
+  <!-- Hidden video -->
+  <video class="hidden-video" id="hiddenVideo">
+    <source src="https://i.imgur.com/hXsyBMA.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <script>
+    function toggleVideo() {
+      const video = document.getElementById('hiddenVideo');
+      const button = document.querySelector('.play-button');
+      
+      if (video.paused) {
+        video.muted = false; // Ensure sound is enabled
+        video.play(); // Play the video
+        button.textContent = 'Pause'; // Change button text to "Pause"
+      } else {
+        video.pause(); // Pause the video
+        button.textContent = 'Play'; // Change button text to "Play"
+      }
+    }
+  </script>
+</body>
+</html>
